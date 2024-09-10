@@ -1,5 +1,5 @@
 const { Strategy: LocalStrategy } = require("passport-local");
-const { UserModel } = require("./model/userModel");
+const { UserModel } = require("../users/user.model");
 const { compareSync } = require("bcrypt");
 const passport = require("passport");
 function passportInit(passport) {

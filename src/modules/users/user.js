@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 const { hashSync } = require("bcrypt");
-const { UserModel } = require("../model/userModel");
-const { redirectIfIsAuth, checkAuthentication } = require("../middleware");
+const { UserModel } = require("./user.model");
+const { redirectIfIsAuth, checkAuthentication } = require("../../common/middlewares/checkAuth");
 
 
 function initRoute(passport) {
