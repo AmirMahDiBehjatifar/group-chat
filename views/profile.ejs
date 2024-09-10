@@ -1,0 +1,25 @@
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4 rounded-square" src="/logo.png" alt="logo" width="200px" height="200px">
+    <h1 class="display-5 fw-bold">صفحه پروفایل</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">به اکانت کاربری خود وارد شدید ، خوش آمدید</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">fullName</th>
+                    <th scope="col">username</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr scope="row">
+                    <td><%=user.fullName%></td>
+                    <td><%=user.username%></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="/logout" type="button" class="btn btn-danger btn-lg px-4 gap-3">Log Out</a>
+        <a href="/" class="btn btn-success mt-2">Home</a>
+    </div>
+</div>
