@@ -10,26 +10,29 @@ const flash = require("express-flash");
 const session = require("express-session");
 const { passportInit } = require("./src/modules/users/passport.config");
 const passport = require("passport");
-const ws = require("ws");
+const { Server } = require("socket.io");
 require("./src/config/mongoose.config");
 
 const app = express();
 const PORT = 3000;
 
 // Create HTTP server
-const server = http.createServer(app);
+const httpServer = http.createServer(app);
 
-// WebSocket Server
-const SocketServer = new ws.Server({ server });
+// SocketIo Server
+const io = new Server(httpServer, {
+    cors: {
+        origin: process.env.NODE_ENV === "production" ? false : ["localhost:3000","http://127.0.0.1:3000"]
+    }
+});
 
-SocketServer.on("connection", (socket) => {
-    console.log("New WebSocket connection established.");
+io.on("connection", (socket) => {
+    console.log(`User ${socket.id} connected`)
 
-    socket.on("message", (message) => {
-        const b = Buffer.from(message);
-        console.log(b.toString());
-        // Echo the message back to the client
-        socket.send(`${message}`);
+    socket.on("message", (data) => {
+        // Echo the message back to the client 
+        console.log(data);
+        io.emit('message', `${socket.id.substring(0, 5)}: ${data}`)
     });
 
     socket.on("close", () => {
@@ -72,7 +75,7 @@ app.use(NotFoundErr);
 app.use(AllExceptionHandler);
 
 // Start server on HTTP and WebSocket
-server.listen(PORT, () => {
+httpServer.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
-    console.log(`WebSocket server is also running on ws://localhost:${PORT}`);
+    console.log(`Socket.io server is also running on localhost:${PORT}`);
 });
