@@ -16,13 +16,16 @@ require("./src/config/mongoose.config");
 const app = express();
 const PORT = 3000;
 
-// Create HTTP server
-const httpServer = http.createServer(app);
+// Create server on Express
+const expressServer = app.listen(PORT, () => {
+    console.log(`listening on PORT ${PORT}`);
+    console.log(`Socket.io server is also running on localhost:${PORT}`);
 
+});
 // SocketIo Server
-const io = new Server(httpServer, {
+const io = new Server(expressServer, {
     cors: {
-        origin: process.env.NODE_ENV === "production" ? false : ["localhost:3000","http://127.0.0.1:3000"]
+        origin: process.env.NODE_ENV === "production" ? false : ["localhost:3000", "http://127.0.0.1:3000"]
     }
 });
 
@@ -49,8 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Setup view-engine
 app.use(expressLayouts);
 app.set("view engine", "ejs");
-// app.set("layout", "./layout/main.ejs");
-app.set("layout", "./layout/chatpage.ejs");
+app.set("layout", "./layout/main.ejs");
+// app.set("layout", "./layout/chatpage.ejs");
 
 
 // Set up Session 
@@ -74,8 +77,3 @@ app.use(userRouter(passport));
 app.use(NotFoundErr);
 app.use(AllExceptionHandler);
 
-// Start server on HTTP and WebSocket
-httpServer.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-    console.log(`Socket.io server is also running on localhost:${PORT}`);
-});
