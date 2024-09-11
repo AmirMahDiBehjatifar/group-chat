@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devmod": "nodemon app.js",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "express-session": "^1.18.0",
     "mongoose": "^8.6.1",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "ws": "^8.18.0"
   }
 }
