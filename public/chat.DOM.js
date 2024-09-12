@@ -13,14 +13,22 @@ if (token) {
 
     const activity = document.querySelector('.activity');
     const msgInput = document.querySelector('input');
+    const nameInput = document.querySelector('#name');
+    const chatRoom = document.querySelector('#room');
+    const usersList = document.querySelector('.user-list');
+    const roomList = document.querySelector('.room-list');
+    const chatDisplay = document.querySelector('.chat-display');
 
 
 
     function sendMessage(e) {
         e.preventDefault();
-        if (msgInput.value) {
+        if (nameInput.value && msgInput.value && chatRoom.value) {
             const message = msgInput.value;
-            socket.emit('message', message);
+            socket.emit('message', {
+                name: nameInput.value,
+                text: message
+            });
             const li = document.createElement('li');
             li.textContent = `You: ${message}`;
             document.querySelector('ul').appendChild(li);

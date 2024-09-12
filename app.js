@@ -7,7 +7,7 @@ const userRouter = require("./src/modules/users/user");
 const path = require("path");
 const flash = require("express-flash");
 const session = require("express-session");
-const { passportInit } = require("./src/modules/users/passport.config");
+const { passportInit } = require("./src/config/passport.config");
 const passport = require("passport");
 const { Server } = require("socket.io");
 require("./src/config/mongoose.config");

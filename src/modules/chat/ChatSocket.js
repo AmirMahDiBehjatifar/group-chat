@@ -58,7 +58,7 @@ module.exports = (io) => {
 
         // When user disconnects - to all others 
         socket.on('disconnect', () => {
-            socket.broadcast.emit('message', `User ${username}} disconnected`)
+            socket.broadcast.emit('message', `User ${username} disconnected`)
         })
 
         // Listen for activity 
