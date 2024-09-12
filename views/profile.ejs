@@ -6,14 +6,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">fullName</th>
-                    <th scope="col">username</th>
+                    <th scope="col">نام کاربری</th>
                 </tr>
             </thead>
             <tbody>
                 <tr scope="row">
-                    <td><%=user.fullName%></td>
-                    <td><%=user.username%></td>
+                    <td><%= user.username %></td>
                 </tr>
             </tbody>
         </table>
@@ -21,5 +19,7 @@
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <a href="/logout" type="button" class="btn btn-danger btn-lg px-4 gap-3">Log Out</a>
         <a href="/" class="btn btn-success mt-2">Home</a>
+        <a href="/chat" class="btn btn-primary mt-2">Group Chat</a>
     </div>
 </div>
+    
