@@ -1,9 +1,9 @@
 // Import js-cookie
-const Cookies = window.Cookies; 
+const Cookies = window.Cookies;
 
 // دریافت توکن از کوکی
-const token = Cookies.get('token');  
-console.log('JWT Token:', token); 
+const token = Cookies.get('token');
+console.log('JWT Token:', token);
 
 if (token) {
     const socket = io('ws://localhost:3000', {
@@ -14,14 +14,15 @@ if (token) {
     const activity = document.querySelector('.activity');
     const msgInput = document.querySelector('input');
 
-   
+
+
     function sendMessage(e) {
         e.preventDefault();
         if (msgInput.value) {
             const message = msgInput.value;
             socket.emit('message', message);
             const li = document.createElement('li');
-        li.textContent = `You: ${message}`;
+            li.textContent = `You: ${message}`;
             document.querySelector('ul').appendChild(li);
 
             msgInput.value = "";
@@ -29,7 +30,7 @@ if (token) {
         msgInput.focus();
     }
 
-   
+
     document.querySelector('form').addEventListener('submit', sendMessage);
 
     socket.on('message', (data) => {
@@ -39,11 +40,11 @@ if (token) {
         console.log('Received message:', data);
     });
 
-   
+
     msgInput.addEventListener('keypress', () => {
         socket.emit('activity', socket.id.substring(0, 5));
     });
-    
+
     let activityTimer;
     socket.on('activity', (name) => {
         activity.textContent = `${name} is typing...`;
