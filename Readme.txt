@@ -17,10 +17,10 @@ modules     // auth
 
 
         Project Setup 
-
+        softwares that you need for run this project : installed nodejs on your Os,mongodb ClientServer 
         1. first install dependencies 
             // Third party packages needed 
-             npm i ejs bcrypt express express-ejs-layouts express-flash express-session mongoose passport passport-local
+             npm i ejs bcrypt express express-ejs-layouts express-flash express-session mongoose passport passport-local ws
 
         2. make sure you have mongodb on your system 
 
