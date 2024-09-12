@@ -2,7 +2,7 @@ const { hashSync } = require("bcrypt");
 const { UserModel } = require("./user.model");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-dotenv.config();
+dotenv.config()
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const userController = {
@@ -51,7 +51,7 @@ const userController = {
     login: (req, res, next, err, user) => {
         if (err || !user) {
             return res.status(400).json({
-                message: 'Something is not right',
+                message: 'Username and password is not correct',
                 user: user
             });
         }
